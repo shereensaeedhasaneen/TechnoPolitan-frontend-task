@@ -1,6 +1,6 @@
 
 <div class="p-4 bg-white">
-    <mat-accordion
+    <mat-accordion [multi]="true"
       cdkDropList
       #unassignedList="cdkDropList"
       [cdkDropListData]="unassignedTasks"
