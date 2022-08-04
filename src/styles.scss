@@ -1,6 +1,12 @@
-/* You can add global styles to this file, and also import other style files */
+
 $purple_color:#BA43FF;
 $blue_color:#7028CE;
-
 /* Importing Bootstrap SCSS file. */
 @import '~bootstrap/scss/bootstrap';
+
+body{
+  background-color: #f8f9fa;
+}
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

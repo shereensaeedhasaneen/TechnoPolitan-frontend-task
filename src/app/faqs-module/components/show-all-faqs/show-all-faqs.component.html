@@ -1,0 +1,22 @@
+
+<div class="p-4 bg-white">
+    <mat-accordion
+      cdkDropList
+      #unassignedList="cdkDropList"
+      [cdkDropListData]="unassignedTasks"
+      (cdkDropListDropped)="drop($event)"
+    >
+        <mat-expansion-panel
+          cdkDrag
+          *ngFor="let task of unassignedTasks"
+        >
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              {{ task.title }}
+            </mat-panel-title>
+
+          </mat-expansion-panel-header>
+          <p>This is the primary content of the panel.</p>
+        </mat-expansion-panel>
+    </mat-accordion>
+</div>
