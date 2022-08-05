@@ -11,10 +11,12 @@
   font-size: 18px;
   font-weight: normal;
   border-left: 10px solid $blue_color;
-  &:active{
-    .fa-angle-down{
-      transform: rotate(180deg)
-    }
+
+}
+
+.rotate_arrow{
+  .fa-angle-down{
+    transform: rotate(180deg)
   }
 }
 
