@@ -1,9 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import {
   CdkDragDrop,
+  CdkDragEnter,
+  CdkDragMove,
   moveItemInArray,
-  transferArrayItem
-} from "@angular/cdk/drag-drop";
+  transferArrayItem,
+} from '@angular/cdk/drag-drop';
+
 import {Task} from '../../../task'
 @Component({
   selector: 'app-show-all-faqs',
@@ -11,51 +14,23 @@ import {Task} from '../../../task'
   styleUrls: ['./show-all-faqs.component.scss']
 })
 export class ShowAllFaqsComponent implements OnInit {
-  panelOpenState: boolean = false;
-
-  customCollapsedHeight: string = '190px';
-  customExpandedHeight: string = '190px';
-  unassignedTasks: Task[] = [
-    {
-      id: '1',
-      title: 'Task 1',
-      desc:"kjhgvc"
-    },
-    {
-      id: '2',
-      title: 'Task 2',
-      desc:"kjhgvc76"
-    },
-    {
-      id: '3',
-      title: 'Task 3',
-      desc:"kjhgvc99"
-    }
-  ];
-
-
+  open=false
   constructor() { }
 
   ngOnInit(): void {
   }
 
+  movies = [
+    {Categname:'Diffrentiator' , faqs:[{fadName:"faq1"}]},
+    {Categname:'Time Tracking' , faqs:[{fadName:"faq2"}, {fadName:"faq3"}]},
+    {Categname:'shesha' , faqs:[{fadName:"faq4"} , {fadName:"faq5"} , {fadName:"faq5"}]},
 
+  ];
 
-
-  drop(event: CdkDragDrop<Task[]>) {
-    if (event.previousContainer === event.container) {
-      moveItemInArray(
-        event.container.data,
-        event.previousIndex,
-        event.currentIndex
-      );
-    } else {
-      transferArrayItem(
-        event.previousContainer.data,
-        event.container.data,
-        event.previousIndex,
-        event.currentIndex
-      );
-    }
+  drop(event: CdkDragDrop<string[]>) {
+    moveItemInArray(this.movies, event.previousIndex, event.currentIndex);
   }
+
+
+
 }

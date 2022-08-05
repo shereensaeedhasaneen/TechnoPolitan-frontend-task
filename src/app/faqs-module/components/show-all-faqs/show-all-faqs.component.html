@@ -1,5 +1,7 @@
 
-<div class="p-4 bg-white">
+<div class="p-4 bg-white data-container">
+
+  <!-- Buttons -->
   <div class="d-flex justify-content-center mb-4">
     <div class="row d-flex justify-content-end w-100">
       <div class="col-2 pr-0">
@@ -12,6 +14,42 @@
 
   </div>
 
+
+  <div cdkDropList class="example-list" (cdkDropListDropped)="drop($event)">
+    <ng-container  *ngFor="let movie of movies" cdkDrag>
+      <div class="accordion-box mb-3 mt-5 d-flex justify-content-between">
+        <div>
+            <i class="fas fa-ellipsis-v mr-1"></i>
+            <i class="fas fa-ellipsis-v"></i>
+            <span class="categoryName ml-2">{{movie.Categname}} </span>
+        </div>
+        <div>
+          <i class="fas fa-pen"></i>
+          <i class="fas fa-trash-alt ml-3"></i>
+          <i class="fas fa-angle-down ml-3"></i>
+
+      </div>
+      </div>
+
+      <div class="white-accordion-box mb-3 d-flex justify-content-between"  *ngFor="let faq of movie.faqs">
+        <div>
+            <i class="fas fa-ellipsis-v mr-1 faq"></i>
+            <i class="fas fa-ellipsis-v faq"></i>
+            <span class="categoryName ml-2">{{faq.fadName}} </span>
+        </div>
+        <div>
+          <i class="fas fa-pen"></i>
+          <i class="fas fa-trash-alt ml-3"></i>
+          <i class="fas fa-angle-down ml-3"></i>
+
+      </div>
+      </div>
+
+    </ng-container>
+
+  </div>
+
+
   <!--<div class="d-flex justify-content-end">
 
         <app-add-faq style="width:20%"></app-add-faq>
@@ -22,7 +60,7 @@
 
   </div>-->
 
-    <mat-accordion [multi]="true"
+    <!--<mat-accordion [multi]="true"
       cdkDropList
       #unassignedList="cdkDropList"
       [cdkDropListData]="unassignedTasks"
@@ -43,13 +81,15 @@
             <div class="mt-4">
               <p>1</p>
             </div>
+            <mat-divider>  </mat-divider>
+            <mat-divider [inset]="true"></mat-divider>
             <div class="mt-4">
               <p>2</p>
             </div>
 
         </mat-expansion-panel>
 
-    </mat-accordion>
+    </mat-accordion>-->
 </div>
 
 
@@ -107,3 +147,7 @@ The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for t
     <p>This is the content text that makes sense here.</p>
   </mat-expansion-panel>
 </mat-accordion>-->
+
+
+
+
