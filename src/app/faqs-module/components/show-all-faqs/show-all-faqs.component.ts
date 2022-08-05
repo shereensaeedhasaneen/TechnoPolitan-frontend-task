@@ -1,3 +1,4 @@
+import { CategoryServiceService } from './../../DataSource/services/category-service.service';
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import {
   CdkDragDrop,
@@ -15,9 +16,11 @@ import {Task} from '../../../task'
 })
 export class ShowAllFaqsComponent implements OnInit {
   open=false
-  constructor() { }
+  constructor(private categoryServices:CategoryServiceService) { }
 
   ngOnInit(): void {
+    this.categoryServices.displayCategories("https:/mocawebsitebackend.techno-politan.xyz/api/v1/Categories?WithFaqs=true&WithNonCategorizedFaqs=true")
+
   }
 
   movies = [

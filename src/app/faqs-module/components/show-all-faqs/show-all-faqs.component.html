@@ -16,8 +16,8 @@
 
 
   <div cdkDropList class="example-list" (cdkDropListDropped)="drop($event)">
-    <ng-container  *ngFor="let movie of movies" cdkDrag>
-      <div class="accordion-box mb-3 mt-5 d-flex justify-content-between">
+    <div *ngFor="let movie of movies" cdkDrag>
+      <div class="accordion-box mb-3 mt-5 d-flex justify-content-between" >
         <div>
             <i class="fas fa-ellipsis-v mr-1"></i>
             <i class="fas fa-ellipsis-v"></i>
@@ -45,7 +45,7 @@
       </div>
       </div>
 
-    </ng-container>
+    </div>
 
   </div>
 
