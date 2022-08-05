@@ -1,0 +1,11 @@
+@import '../../../../styles.scss';
+
+.nav_title{
+  color: $purple_color;
+}
+
+.active{
+  color: $purple_color !important;
+  font-weight: bold;
+  border-bottom: 4px solid $purple_color;
+}

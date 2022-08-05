@@ -4,7 +4,7 @@ import { SharedRoutingModule } from './shared-routing.module';
 import { HeaderComponent } from './components/header/header.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import {MaterialModule} from '../material/material.module'
-
+import { FormsModule , ReactiveFormsModule } from '@angular/forms';
 @NgModule({
   declarations: [
     HeaderComponent
@@ -13,12 +13,16 @@ import {MaterialModule} from '../material/material.module'
     CommonModule,
     SharedRoutingModule,
     NgbModule,
-    MaterialModule
+    MaterialModule,
+    FormsModule ,
+    ReactiveFormsModule
   ],
   exports:[
     HeaderComponent,
     NgbModule,
-    MaterialModule
+    MaterialModule,
+    FormsModule,
+    ReactiveFormsModule
   ]
 })
 export class SharedModule { }
