@@ -9,7 +9,7 @@ export class CategoryOperations implements IApiRepository{
   constructor(private http:HttpClient){}
 
   getRequest(Parameters: string): Observable<any> {
-    return this.http.get(Parameters);
+    return this.http.get<any>(Parameters);
   }
 
   // postRequest(Parameters: RequestParametersModel): Observable<any> {

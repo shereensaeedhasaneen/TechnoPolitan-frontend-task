@@ -1,6 +1,8 @@
+import { CategoriesService } from './../../services/categories.service';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-add-category',
@@ -10,7 +12,8 @@ import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 export class AddCategoryComponent implements OnInit {
 
   CategoryForm !: FormGroup;
-  constructor(config: NgbModalConfig, private modalService: NgbModal) {
+
+  constructor( private router:Router, config: NgbModalConfig, private modalService: NgbModal , private CategoriesService:CategoriesService) {
     // customize default values of modals used by this component tree
     config.backdrop = 'static';
     config.keyboard = false;
@@ -18,7 +21,7 @@ export class AddCategoryComponent implements OnInit {
 
   ngOnInit(): void {
     this.CategoryForm=new FormGroup({
-      categoryName : new FormControl('' , Validators.required)
+      name : new FormControl('' , Validators.required)
     })
   }
   open(content: any) {
@@ -26,6 +29,13 @@ export class AddCategoryComponent implements OnInit {
   }
 
   saveCategory(){
-    console.log(this.CategoryForm.value)
+
+    console.log(this.CategoryForm.value);
+    this.CategoriesService.postCategories(this.CategoryForm.value).subscribe(res=>{
+      console.log(res)
+      //this.modalService.dismissAll()
+      window.location.reload();
+    })
+
   }
 }
