@@ -1,0 +1,16 @@
+<ng-template #content let-c="close" let-d="dismiss">
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Add FAQ</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="d('Cross click')">X</button>
+  </div>
+  <div class="modal-body">
+    <form [formGroup]="CategoryForm">
+      <input formControlName="categoryName" type="text" placeholder="Category Name">
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" [disabled]="!CategoryForm.valid" (click)="saveCategory()">Save</button>
+  </div>
+</ng-template>
+
+<button class="add-faq main_btn_radius" (click)="open(content)">Add FAQ</button>

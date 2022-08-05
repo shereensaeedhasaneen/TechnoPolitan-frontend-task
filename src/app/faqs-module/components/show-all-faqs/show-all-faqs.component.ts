@@ -11,19 +11,25 @@ import {Task} from '../../../task'
   styleUrls: ['./show-all-faqs.component.scss']
 })
 export class ShowAllFaqsComponent implements OnInit {
+  panelOpenState: boolean = false;
 
+  customCollapsedHeight: string = '190px';
+  customExpandedHeight: string = '190px';
   unassignedTasks: Task[] = [
     {
       id: '1',
       title: 'Task 1',
+      desc:"kjhgvc"
     },
     {
       id: '2',
       title: 'Task 2',
+      desc:"kjhgvc76"
     },
     {
       id: '3',
       title: 'Task 3',
+      desc:"kjhgvc99"
     }
   ];
 
