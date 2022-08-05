@@ -6,7 +6,8 @@ export interface CategoryModel {
 
 
 export interface Data {
-  categories: Category[]
+  categories: Category[],
+  nonCategorizedFaqs: NonCategorizedFaq[]
 }
 
 export interface Category {
@@ -17,6 +18,13 @@ export interface Category {
 }
 
 export interface Faq {
+  id: number
+  question: string
+  answer: string
+  displayOrder: number
+}
+
+export interface NonCategorizedFaq {
   id: number
   question: string
   answer: string

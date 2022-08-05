@@ -1,12 +1,43 @@
 @import '../../../../styles.scss';
-mat-expansion-panel{
-  background-color: $purple_color !important;
-  border: solid 0.6em transparent;
-  border-left-color: $blue_color;
+
+.data-container{
+  border-radius: 10px;
+}
+.accordion-box{
+  background: $purple_color;
+  border-radius: 6px;
+  padding: 20px 30px;
+  color: #fff;
+  font-size: 18px;
+  font-weight: normal;
+  border-left: 10px solid $blue_color;
+  &:active{
+    .fa-angle-down{
+      transform: rotate(180deg)
+    }
+  }
 }
 
-// mat-expansion-panel-header{
-//   padding: 3% !important;
+.white-accordion-box{
+  @extend .accordion-box;
+  background: #fff;
+  color: black;
+  box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2),
+              0 8px 10px 1px rgba(0, 0, 0, 0.14),
+              0 3px 14px 2px rgba(0, 0, 0, 0.12);
 
-// }
+  i.faq{
+    color: $blue_color;
+  }
+  .fa-trash-alt{
+    color: red;
+  }
+  .fa-pen{
+    color: $blue_color;
+  }
 
+  .fa-angle-down{
+    color: rgb(158, 150, 150);
+    transform: rotate(270deg);
+  }
+}

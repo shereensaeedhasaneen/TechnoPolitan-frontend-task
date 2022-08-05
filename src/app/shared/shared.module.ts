@@ -5,6 +5,7 @@ import { HeaderComponent } from './components/header/header.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import {MaterialModule} from '../material/material.module'
 import { FormsModule , ReactiveFormsModule } from '@angular/forms';
+import {HttpClientModule} from '@angular/common/http';
 @NgModule({
   declarations: [
     HeaderComponent
@@ -15,14 +16,16 @@ import { FormsModule , ReactiveFormsModule } from '@angular/forms';
     NgbModule,
     MaterialModule,
     FormsModule ,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   exports:[
     HeaderComponent,
     NgbModule,
     MaterialModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
   ]
 })
 export class SharedModule { }
