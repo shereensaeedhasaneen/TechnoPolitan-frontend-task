@@ -1,34 +1,52 @@
-import { Category, CategoryModel, NonCategorizedFaq } from './../../models/category-model';
+import { ModalPopupComponent } from './../../../shared/components/modal-popup/modal-popup.component';
+import { Category, NonCategorizedFaq } from './../../models/category-model';
 import { CategoriesService } from './../../services/categories.service';
-import { CategoryServiceService } from './../../DataSource/services/category-service.service';
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import Swal from 'sweetalert2';
 import { AngularEditorConfig } from '@kolkov/angular-editor';
-
 import {
   CdkDragDrop,
-  CdkDragEnter,
-  CdkDragMove,
   moveItemInArray,
-  transferArrayItem,
 } from '@angular/cdk/drag-drop';
-
-import {Task} from '../../../task'
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+
 @Component({
   selector: 'app-show-all-faqs',
   templateUrl: './show-all-faqs.component.html',
-  styleUrls: ['./show-all-faqs.component.scss']
+  styleUrls: ['./show-all-faqs.component.scss'],
+  encapsulation:ViewEncapsulation.None
 })
 export class ShowAllFaqsComponent implements OnInit {
   selectedDivIndex=-1;
+
   Categorized_Data!:Category[];
-  Cotegories_names:Category[]=[];
   nonCategorized_Data!:NonCategorizedFaq[];
+  Cotegories_names:Category[]=[];
+
   CategoryForm !: FormGroup;
   FaqsForm!:FormGroup;
-  htmlContent = '';
+
+  RichEditorContent = '';
+
+  Add_Category_Modal_Data={
+    Modal_title : "Add Category",
+    FormGroupName: "CategoryForm",
+    model : {},
+    fields: [
+    {
+      key: 'name',
+      type: 'input',
+      templateOptions: {
+        label: 'Your Name',
+        placeholder: 'Enter your full name',
+        required: true,
+      }
+    }
+    ],
+  }
+
+
   constructor(
      private CategoriesService:CategoriesService,
      config: NgbModalConfig, private modalService: NgbModal
@@ -147,8 +165,27 @@ deleteCategory(catgId :number){
   });
 }
 
+openModal() {
+
+  //ModalComponent is component name where modal is declare
+  const modalRef = this.modalService.open(ModalPopupComponent );
+  modalRef.componentInstance.Add_Category_Modal_Data = this.Add_Category_Modal_Data;
+
+  modalRef.result.then((result) => {
+    console.log(result);
+  }).catch((error) => {
+    console.log(error);
+  });
+}
+
 updateFAQ(){
 
 }
+aa(){
+
+  console.log(',nbvc')
 }
+
+}
+
 

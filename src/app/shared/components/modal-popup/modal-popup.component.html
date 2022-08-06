@@ -1,0 +1,12 @@
+
+  <div class="modal-header">
+    <h2 class="modal-title">{{Add_Category_Modal_Data.Modal_title}}</h2>
+</div>
+<div class="modal-body">
+  <form [formGroup]="Add_Category_Modal_Data.FormGroupName">
+    <formly-form [form]="Add_Category_Modal_Data.FormGroupName" [fields]="Add_Category_Modal_Data.fields" [model]="Add_Category_Modal_Data.model"></formly-form>
+   </form>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="closeModal()">Close</button>
+</div>
