@@ -1,0 +1,15 @@
+.btn-cancel-modal{
+  background: transparent ;
+  padding: 8px 30px;
+  &:hover{
+    @extend .btn-confirm-modal;
+  }
+}
+.btn-confirm-modal {
+  background: rgb(43, 41, 41);
+  color: #fff;
+  padding: 8px 30px;
+  &:hover{
+    @extend .btn-cancel-modal;
+  }
+}

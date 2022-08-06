@@ -9,7 +9,8 @@ import {HttpClientModule} from '@angular/common/http';
 import { AngularEditorModule } from '@kolkov/angular-editor';
 import { ButtonComponent } from './components/button/button.component';
 import { ModalPopupComponent } from './components/modal-popup/modal-popup.component';
-
+import { FormlyModule } from '@ngx-formly/core';
+import { FormlyBootstrapModule } from '@ngx-formly/bootstrap';
 @NgModule({
   declarations: [
     HeaderComponent,
@@ -24,7 +25,9 @@ import { ModalPopupComponent } from './components/modal-popup/modal-popup.compon
     FormsModule ,
     ReactiveFormsModule,
     HttpClientModule,
-    AngularEditorModule
+    AngularEditorModule,
+    FormlyModule.forRoot({ extras: { lazyRender: true } }),
+    FormlyBootstrapModule,
   ],
   exports:[
     HeaderComponent,
@@ -35,7 +38,9 @@ import { ModalPopupComponent } from './components/modal-popup/modal-popup.compon
     HttpClientModule,
     AngularEditorModule,
     ButtonComponent,
-    ModalPopupComponent
+    ModalPopupComponent,
+    FormlyModule,
+    FormlyBootstrapModule
   ]
 })
 export class SharedModule { }

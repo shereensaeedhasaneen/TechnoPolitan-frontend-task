@@ -4,11 +4,11 @@
     <div class="row d-flex justify-content-end w-100">
       <div class="col-2 pr-0">
         <app-add-faq [Cotegories_names]="Cotegories_names"></app-add-faq>
-        <app-button [btnTitle]="'Add FAQ'" (click)="openModal()" [btnstyle]="'add-faq-btn main_btn_radius'"></app-button>
+        <app-button [btnTitle]="'Add FAQ'" (click)="openModal(Add_Faqs_Modal_Data)" [btnstyle]="'add-faq-btn main_btn_radius'"></app-button>
       </div>
       <div class="col-2 pr-0">
         <app-add-category></app-add-category>
-        <app-button [btnTitle]="'Add Category'" (click)="openModal()"  [btnstyle]="'add-category-btn main_btn_radius'"></app-button>
+        <app-button [btnTitle]="'Add Category'" (click)="openModal(Add_Category_Modal_Data)"  [btnstyle]="'add-category-btn main_btn_radius'"></app-button>
       </div>
     </div>
 
