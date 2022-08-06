@@ -6,6 +6,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import {MaterialModule} from '../material/material.module'
 import { FormsModule , ReactiveFormsModule } from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
+import { AngularEditorModule } from '@kolkov/angular-editor';
+
 @NgModule({
   declarations: [
     HeaderComponent
@@ -17,7 +19,8 @@ import {HttpClientModule} from '@angular/common/http';
     MaterialModule,
     FormsModule ,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    AngularEditorModule
   ],
   exports:[
     HeaderComponent,
@@ -25,7 +28,8 @@ import {HttpClientModule} from '@angular/common/http';
     MaterialModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    AngularEditorModule
   ]
 })
 export class SharedModule { }
