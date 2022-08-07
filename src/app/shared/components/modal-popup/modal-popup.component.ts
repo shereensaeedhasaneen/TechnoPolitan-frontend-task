@@ -3,16 +3,17 @@ import { FormGroup } from '@angular/forms';
 import { Component, Input, OnInit, Output , EventEmitter } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { AngularEditorConfig } from '@kolkov/angular-editor';
+import { ShowAllFaqsComponent } from '../../../faqs-module/components/show-all-faqs/show-all-faqs.component';
 
 @Component({
   selector: 'app-modal-popup',
   templateUrl: './modal-popup.component.html',
-  styleUrls: ['./modal-popup.component.scss']
+  styleUrls: ['./modal-popup.component.scss'],
+  providers:[ShowAllFaqsComponent]
 })
 export class ModalPopupComponent implements OnInit {
 
-  @Output() Modal_Form_value :EventEmitter<FormGroup>=new EventEmitter;
-  constructor(private activeModal: NgbActiveModal) {}
+  constructor(private activeModal: NgbActiveModal ,private showComponent:ShowAllFaqsComponent ) {}
   @Input() public Modal_Data: any;
   config: AngularEditorConfig = {
     editable: true,
@@ -44,8 +45,8 @@ export class ModalPopupComponent implements OnInit {
     }
   }
 
-  Click_Modal_Confirmation(FormValue:FormGroup){
-    console.log(FormValue)
-    this.Modal_Form_value.emit(FormValue)
+  Click_Modal_Confirmation(formValue:any , functionName:string){
+    console.log(formValue)
+    this.showComponent.Call_Api_Methods(formValue , functionName)
   }
 }

@@ -15,6 +15,6 @@
 </div>
 <div class="modal-footer">
     <button type="button" class=" btn-cancel-modal main_btn_radius" (click)="closeModal()">Close</button>
-    <button type="button" class=" btn-confirm-modal main_btn_radius" [disabled]="!Modal_Data.FormGroupName.valid" (click)="Click_Modal_Confirmation(Modal_Data.FormGroupName.value)">{{Modal_Data.Confirmation_button_text}}</button>
+    <button type="button" class=" btn-confirm-modal main_btn_radius" [disabled]="!Modal_Data.FormGroupName.valid" (click)="Click_Modal_Confirmation(Modal_Data.FormGroupName.value , Modal_Data.Modal_title)">{{Modal_Data.Confirmation_button_text}}</button>
 
 </div>

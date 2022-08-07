@@ -17,7 +17,7 @@ export class FaqServiceService {
   return this.http.put<Faq>(`${this.baseUrl}/${FaqId}`,model)
 }
 
-  deleteCategory(CategoryId:number):Observable<Faq>{
-    return this.http.delete<Faq>(`${this.baseUrl}/${CategoryId}?DeleteRelatedFaqs=true`)
+  delete_faq(faqId:number):Observable<Faq>{
+    return this.http.delete<Faq>(`${this.baseUrl}/${faqId}`)
   }
 }

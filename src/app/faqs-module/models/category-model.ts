@@ -13,8 +13,8 @@ export interface Data {
 export interface Category {
   id: number
   name: string
-  displayOrder: number
-  faqs: Faq[]
+  displayOrder?: number
+  faqs?: Faq[]
 }
 
 export interface Faq {
