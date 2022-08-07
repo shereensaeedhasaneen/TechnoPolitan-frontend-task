@@ -1,0 +1,20 @@
+
+  <div class="modal-header">
+    <h2 class="modal-title">{{Modal_Data.Modal_title}}</h2>
+</div>
+<div class="modal-body">
+  <form [formGroup]="Modal_Data.FormGroupName">
+
+    <formly-form [form]="Modal_Data.FormGroupName" [fields]="Modal_Data.fields" [model]="Modal_Data.model"></formly-form>
+
+    <div *ngIf="Modal_Data.hasRichEditor">
+        <h4>Enter Answer</h4>
+        <angular-editor  [config]="config" formControlName="answer"></angular-editor>
+    </div>
+   </form>
+</div>
+<div class="modal-footer">
+    <button type="button" class=" btn-cancel-modal main_btn_radius" (click)="closeModal()">Close</button>
+    <button type="button" class=" btn-confirm-modal main_btn_radius" [disabled]="!Modal_Data.FormGroupName.valid" (click)="Click_Modal_Confirmation(Modal_Data.FormGroupName.value)">{{Modal_Data.Confirmation_button_text}}</button>
+
+</div>

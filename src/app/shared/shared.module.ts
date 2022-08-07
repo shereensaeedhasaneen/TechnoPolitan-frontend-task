@@ -7,10 +7,15 @@ import {MaterialModule} from '../material/material.module'
 import { FormsModule , ReactiveFormsModule } from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 import { AngularEditorModule } from '@kolkov/angular-editor';
-
+import { ButtonComponent } from './components/button/button.component';
+import { ModalPopupComponent } from './components/modal-popup/modal-popup.component';
+import { FormlyModule } from '@ngx-formly/core';
+import { FormlyBootstrapModule } from '@ngx-formly/bootstrap';
 @NgModule({
   declarations: [
-    HeaderComponent
+    HeaderComponent,
+    ButtonComponent,
+    ModalPopupComponent
   ],
   imports: [
     CommonModule,
@@ -20,7 +25,9 @@ import { AngularEditorModule } from '@kolkov/angular-editor';
     FormsModule ,
     ReactiveFormsModule,
     HttpClientModule,
-    AngularEditorModule
+    AngularEditorModule,
+    FormlyModule.forRoot({ extras: { lazyRender: true } }),
+    FormlyBootstrapModule,
   ],
   exports:[
     HeaderComponent,
@@ -29,7 +36,11 @@ import { AngularEditorModule } from '@kolkov/angular-editor';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    AngularEditorModule
+    AngularEditorModule,
+    ButtonComponent,
+    ModalPopupComponent,
+    FormlyModule,
+    FormlyBootstrapModule
   ]
 })
 export class SharedModule { }

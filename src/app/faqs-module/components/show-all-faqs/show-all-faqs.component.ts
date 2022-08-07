@@ -1,34 +1,103 @@
-import { Category, CategoryModel, NonCategorizedFaq } from './../../models/category-model';
+import { ModalPopupComponent } from './../../../shared/components/modal-popup/modal-popup.component';
+import { Category, NonCategorizedFaq } from './../../models/category-model';
 import { CategoriesService } from './../../services/categories.service';
-import { CategoryServiceService } from './../../DataSource/services/category-service.service';
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import Swal from 'sweetalert2';
 import { AngularEditorConfig } from '@kolkov/angular-editor';
-
 import {
   CdkDragDrop,
-  CdkDragEnter,
-  CdkDragMove,
   moveItemInArray,
-  transferArrayItem,
 } from '@angular/cdk/drag-drop';
-
-import {Task} from '../../../task'
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormlyFieldConfig } from '@ngx-formly/core';
+
 @Component({
   selector: 'app-show-all-faqs',
   templateUrl: './show-all-faqs.component.html',
-  styleUrls: ['./show-all-faqs.component.scss']
+  styleUrls: ['./show-all-faqs.component.scss'],
+  encapsulation:ViewEncapsulation.None
 })
 export class ShowAllFaqsComponent implements OnInit {
   selectedDivIndex=-1;
+
   Categorized_Data!:Category[];
-  Cotegories_names:Category[]=[];
   nonCategorized_Data!:NonCategorizedFaq[];
+  Cotegories_names:Category[]=[];
+  All_Cotegories_names:Category[] = []
   CategoryForm !: FormGroup;
   FaqsForm!:FormGroup;
-  htmlContent = '';
+
+  RichEditorContent = '';
+
+
+  //// Start Create FAQs Form Dynamicly ////
+  Add_Faqs_form = new FormGroup({});
+  Add_Faqs_model = {categories:'' ,answer:'' ,question:''};
+  Add_Faqs_fields?: FormlyFieldConfig[] = [
+    {
+      key: 'categories',
+      type: 'select',
+
+      templateOptions: {
+        options: [],
+        required: true,
+      }
+    },
+
+    {
+      key: 'question',
+      type: 'input',
+      templateOptions: {
+        label: 'Enter your question',
+        placeholder: 'Your question',
+        required: true,
+      }
+    },
+
+    {
+      key: 'answer',
+      templateOptions: {
+        required: true,
+      }
+    }
+
+  ];
+  Add_Faqs_Modal_Data={
+    Modal_title : "Add FAQ",
+    FormGroupName: this.Add_Faqs_form,
+    hasRichEditor:true,
+    categries:this.Cotegories_names,
+    model : this.Add_Faqs_model,
+    fields: this.Add_Faqs_fields,
+    Confirmation_button_text:'Save FAQ'
+  }
+ //// End Create FAQs Form Dynamicly ////
+
+  //// Start Create Category Form Dynamicly ////
+  Add_Category_form = new FormGroup({});
+  Add_Category_model = { answer: ''  , question:''};
+  Add_Category_fields: FormlyFieldConfig[] = [
+    {
+      key: 'name',
+      type: 'input',
+      templateOptions: {
+        label: 'Enter Category Name',
+        placeholder: 'Category Name',
+        required: true,
+      }
+    }
+  ];
+  Add_Category_Modal_Data={
+    Modal_title : "Add Category",
+    FormGroupName: this.Add_Category_form,
+    hasRichEditor:false,
+    model : this.Add_Category_model,
+    fields: this.Add_Category_fields,
+    Confirmation_button_text:"Save Category"
+  }
+ //// End Create Category Form Dynamicly ////
+
   constructor(
      private CategoriesService:CategoriesService,
      config: NgbModalConfig, private modalService: NgbModal
@@ -70,6 +139,8 @@ export class ShowAllFaqsComponent implements OnInit {
     this.FaqsForm.get("answer")?.patchValue(faqObject.answer)
     this.FaqsForm.get("question")?.patchValue(faqObject.question)
   }
+
+
   ngOnInit(): void {
     this.CategoryForm=new FormGroup({
       name : new FormControl('' , Validators.required)
@@ -80,8 +151,13 @@ export class ShowAllFaqsComponent implements OnInit {
       answer: new FormControl('' , Validators.required),
       question : new FormControl('' , Validators.required)
     })
+
+
+
     this.CategoriesService.getCategories().subscribe( (res:any)=>{
       this.Categorized_Data=res['data']['categories']
+
+  // assuming response has values like this: ['Italy','France']
 
       for(let i = 0 ; i<this.Categorized_Data.length ; i++){
 
@@ -91,6 +167,8 @@ export class ShowAllFaqsComponent implements OnInit {
           displayOrder: 0,
           faqs: []
         } )
+
+        this.All_Cotegories_names.push(res['data']['categories'][i].name)
       }
       this.nonCategorized_Data=res['data']['nonCategorizedFaqs']
       this.nonCategorized_Data.push({id: 245, question: 'ggg16', answer: 'Answer can be added here...<font face="gtRegular">11</font>', displayOrder: 1}
@@ -147,8 +225,27 @@ deleteCategory(catgId :number){
   });
 }
 
+openModal(modalData:any) {
+
+  //ModalComponent is component name where modal is declare
+  const modalRef = this.modalService.open(ModalPopupComponent );
+  modalRef.componentInstance.Modal_Data = modalData;
+  modalRef.result.then((result) => {
+    console.log(result);
+
+  }).catch((error) => {
+    console.log(error);
+  });
+}
+
 updateFAQ(){
 
 }
+aa(){
+
+  console.log(',nbvc')
 }
+
+}
+
 
